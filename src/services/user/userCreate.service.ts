@@ -1,9 +1,11 @@
-import { users } from "../../database";
+import { User } from "../../entities/user.entities";
 import { IUser, IUserCreate } from "../../interfaces/user";
 
-import {v4} from "uuid"
+import { AppDataSource } from "../../data";
 
-const userCreateService = ({name, email}:IUserCreate) => {
+const userCreateService = async({name, email}:IUserCreate) => {
+    const userRepository =  AppDataSource.getRepository(User)
+    const users = await userRepository.find()
 
     const emailAlreadyExists = users.find(u=>u.email===email)
 
@@ -11,16 +13,17 @@ const userCreateService = ({name, email}:IUserCreate) => {
         throw new Error("Email already exists")
     }
 
-    const newUser: IUser =  {
-        id: v4(),
-        name,
-        email
+    const user = new User() 
+        
+        user.name = name,
+        user.email = email
 
-    }
+    
 
-    users.push(newUser)
+    userRepository.create(user)
+    await userRepository.save(user)
 
-    return newUser
+    return user
 }
 
 export default userCreateService

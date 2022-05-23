@@ -1,10 +1,10 @@
 import {Request, Response} from "express"
 import userListServices from "../../services/user/userList.service"
 
-const userListController = (req:Request, res:Response) => {
+const userListController = async(req:Request, res:Response) => {
     try {
 
-        const users = userListServices()
+        const users = await userListServices()
 
         return res.status(200).json(users)
     }catch (err) {
