@@ -15,6 +15,3 @@ export interface IUserLogin {
     password:string;
 }
 
-export interface IUserListByEmail {
-    authorization?:string
-}

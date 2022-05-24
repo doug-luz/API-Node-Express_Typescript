@@ -5,9 +5,10 @@ import userListByEmailService from "../../services/user/userListByEmail.service"
 const userListByEmailController = async (req:Request, res:Response) => {
 
     try{
-        const user = await userListByEmailService({authorization:req.headers.authorization})
+        const email = req.userEmail
+        const user = await userListByEmailService(email)
 
-        return res.status(201).json(user)
+        return res.status(200).json(user)
 
     }catch(err){
         if(err instanceof Error){
