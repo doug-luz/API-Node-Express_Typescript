@@ -1,4 +1,5 @@
-import express from "express"
+import express, { NextFunction, Response } from "express"
+import { AppError } from "./errors/errors";
 import routes from "./routes"
 
 const app = express();
