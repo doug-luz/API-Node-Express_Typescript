@@ -2,7 +2,7 @@ import { Entity, Column, PrimaryColumn, OneToOne, JoinColumn } from "typeorm";
 import {v4} from "uuid"
 import { Cart } from "./carts.entity";
 
-@Entity()
+@Entity("users")
 export class User {
     @PrimaryColumn("uuid")
     readonly id: string

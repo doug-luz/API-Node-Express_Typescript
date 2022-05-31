@@ -1,9 +1,8 @@
-import { IUserLogin } from "../../interfaces/user";
+import { IUserLogin } from "../../interfaces/users";
 import { AppDataSource } from "../../data";
 import { User } from "../../entities/user.entities";
 import bcrypt from "bcrypt"
 import jwt from "jsonwebtoken"
-import dotenv from "dotenv"
 
 const userLoginService = async({email, password}:IUserLogin) => {
     const userRepository = AppDataSource.getRepository(User)
